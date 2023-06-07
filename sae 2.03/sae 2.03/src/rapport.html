@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yliess El Atifi Arthur Delobel Bernard Ludovic" />
+  <title>Rapport technique</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Rapport technique</h1>
+<p class="author">Yliess El Atifi Arthur Delobel Bernard Ludovic</p>
+</header>
+<h1 id="rapport-intermédiaire-saé-2.03">Rapport intermédiaire Saé 2.03</h1>
+<p>Ce rapport consiste à décrire chaques étapes nécéssaires pour créer une première machine virtuelle équipé de debian 11,puis une deuxième de manière automatique et comment instaler et configurer les packages git et gitea.</p>
+<h2 id="sommaire">Sommaire</h2>
+<ol type="1">
+<li><a href="#Creation-d&#39;-une-machine-virtuelle">Creation d’une machine virtuelle</a></li>
+<li><a href="#Installation-Debian-par-pré-configuration">Installation Debian par pré-configuration</a></li>
+<li><a href="#gitea">Gitea</a></li>
+</ol>
+<h1 id="creation-dune-machine-virtuelle">Creation d’une machine virtuelle</h1>
+<h2 id="prérequis-de-la-machine">Prérequis de la machine :</h2>
+<pre><code>• VirtualBox installé 
+
+• 4 Go de RAM minimum
+
+• 20 Go d’espace disque ou plus
+
+• VirtualBox installé avec son «extension pack» (VBoxGuestAddition.iso) sur la machine hôte.
+
+
+___</code></pre>
+<h2 id="caractéristiques-de-la-machine-virtuelle">Caractéristiques de la machine virtuelle :</h2>
+<pre><code>+ Nom de la machine  : sae203
++ Dossier de la machine : /usr/local/virtual_machine/infoetu/arthur.delobel.etu
++ Type : Linux
++ Version : Debian ou Debian 11 en 64-bit
++ Mémoire vive (RAM) : 2048 Mo pour être à l’aise à l’usage.
++ Disque dur : 20 Go entier (une seule partition)</code></pre>
+<h1 id="Création_VM">1.1 Creation de la machine virtuelle</h1>
+<blockquote>
+<p><img src="img/a/1.png" id="a1" alt="Figure 1.1 : Créer un disque virtuel" /> <img src="img/a/2.png" id="a2" alt="Figure 1.2 : Stockage sur disque dur physique" /> <img src="img/a/3.png" id="a3" alt="Figure 1.3 : Alloué de la mémoire RAM" /> <img src="img/a/4.png" id="a4" alt="Figure 1.4 : Emplacement et taille du disque dur virtuel" /> <img src="img/a/5.png" id="a5" alt="Figure 1.5 : Type du disque dur" /></p>
+</blockquote>
+<h3 id="que-signifie-64-bit-dans-debian-64-bit">- Que signifie “64-bit” dans “Debian 64-bit” ?</h3>
+<pre><code>Un processeur 64 bits est un microprocesseur dans laquelle la taille d&#39;un mot 
+machine est de 64 bits ; une condition indispensable pour les applications fortement consommatrices de données et de mémoire d&#39;où la mémoire vive (RAM) de 
+2048 Mo et 20go de disque dur afin de supporter l’OS Debian 11.
+
+https://www.lemagit.fr/definition/64-bits#:~:text=Un%20processeur%2064%20bits%20est,et%20les%20serveurs%20hautes
+%20performances)</code></pre>
+<h3 id="quelle-est-la-configuration-réseau-utilisée-par-défaut">- Quelle est la configuration réseau utilisée par défaut ?</h3>
+<pre><code>Dynamic Host Configuration Protocol est un protocole réseau dont le rôle est d’assurer la configuration automatique des paramètres IP d’une station ou d&#39;une machine.
+Il est à l&#39;origine, par exemple, du choix d&#39;adresse IP et du masque d&#39;un sous-réseau.</code></pre>
+<h3 id="quel-est-le-nom-du-fichier-xml-contenant-la-configuration-de-votre-machine-et-sauriez-vous-modifier-directement-ce-fichier-pour-mettre-2-processeurs-à-votre-machine">- Quel est le nom du fichier XML contenant la configuration de votre machine et Sauriez-vous modifier directement ce fichier pour mettre 2 processeurs à votre machine ?</h3>
+<pre><code>Le fichier Xml qui contient tout la configuration XMl de notre machine s’appelle 
+sae203.vbox et donc pour mettre 2 processeur a la machine virtuel il suffit de mettre “&lt;count=2&gt;” </code></pre>
+<h2 id="installation-de-los">Installation de l’OS</h2>
+<p>Caractéristiques à considérer :</p>
+<p>• Nom de la machine : serveur</p>
+<p>• Domaine : Laisser vide</p>
+<p>• Pays/langue : France</p>
+<p>• Miroir : http://debian.polytech-lille.fr</p>
+<p>• Proxy si nécessaire : http://cache.univ-lille.fr:3128</p>
+<p>• Compte administrateur : root / root</p>
+<p>• Un Compte utilisateur : User / user / user</p>
+<p>• Partition : 1 seule partition recouvrant le disque entier</p>
+<p>• Sélection des logiciels de démarrage (Paquetages logiciels à préinstaller pour se simplifier la vie par la suite) : a. environnement de bureau Debian b. … MATE (penser à décocher Gnome) c. serveur web d. serveur ssh e. utilitaire usuels du système</p>
+<p><img src="img/b/1.png" alt="ImageCapture" /> <img src="img/b/2.png" alt="ImageCapture" /> <img src="img/b/3.png" alt="ImageCapture" /> <img src="img/b/4.png" alt="ImageCapture" /> <img src="img/b/5.png" alt="ImageCapture" /> <img src="img/b/6.png" alt="ImageCapture" /> <img src="img/b/7.png" alt="ImageCapture" /> <img src="img/b/8.png" alt="ImageCapture" /> <img src="img/b/9.png" alt="ImageCapture" /> <img src="img/b/10.png" alt="ImageCapture" /> <img src="img/b/11.png" alt="ImageCapture" /> <img src="img/b/12.png" alt="ImageCapture" /> <img src="img/b/13.png" alt="ImageCapture" /></p>
+<h3 id="quest-ce-quun-fichier-iso-bootable">Qu’est-ce qu’un fichier iso bootable ?</h3>
+<p>On dit d’un disque qu’il est « bootable » lorsqu’il contient les composants logiciels nécessaires pour être démarré directement au chargement de l’ordinateur, avant le chargement du système d’exploitation installé sur la machine.</p>
+<p>https://www.futura-sciences.com/tech/definitions/informatique-bootable-18095/#:~:text=On%20dit%20d’un%20disque,exploita tion%20install%C3%A9%20sur%20la%20machine.</p>
+<h3 id="quest-ce-que-mate-gnome">Qu’est-ce que MATE ? GNOME ?</h3>
+<p>MATE (prononcer maté à l’espagnole) est un environnement de bureau libre utilisant (dans un premier temps) la boîte à outils GTK+ 3. x et destiné aux systèmes d’exploitation apparentés à UNIX.</p>
+<h3 id="quest-ce-quun-serveur-web">Qu’est-ce qu’un serveur web ?</h3>
+<p>Un serveur web est un ordinateur qui stocke les fichiers qui composent un site web (par exemple les documents HTML, les images, les feuilles de style CSS, les fichiers JavaScript) et qui les envoie à l’appareil de l’utilisateur qui visite le site.</p>
+<p>https://developer.mozilla.org/fr/docs/Learn/Common_questions/Web_mechanics/What_is_a_web_server</p>
+<h3 id="quest-ce-quun-serveur-ssh">Qu’est-ce qu’un serveur ssh ?</h3>
+<p>SSH, ou Secure Socket Shell, est un protocole réseau qui permet aux administrateurs d’accéder à distance à un ordinateur, en toute sécurité. SSH désigne également l’ensemble des utilitaires qui mettent en œuvre le protocole.</p>
+<p>http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-fr-4/ch-ssh.html#:~:text=SSH%E2%84%A2%20(ou%20Secure%20SHell,des%20sy st%C3%A8mes%20h%C3%B4te%20de%20serveurs.</p>
+<h3 id="quest-ce-quun-serveur-mandataire">Qu’est-ce qu’un serveur mandataire ?</h3>
+<p>Dispositif informatique associé à un serveur et réalisant, pour des applications autorisées, des fonctions de médiation, telles que le stockage des documents les plus fréquemment demandés ou l’établissement de passerelles.</p>
+<p>https://www.techno-science.net/definition/3812.html</p>
+<h1 id="Installation_debian11">1.2 Installation de debian sur la machine virtuelle (1.2)</h1>
+<h2 id="accès-sudo-pour-user">Accès sudo pour user</h2>
+<p>• Se connecter en tant que root (identifiant : root, mot de passe : root)</p>
+<p>• Activer le Soft Keyboard (Barre du haut de la machine virtuelle -&gt; Entrée -&gt; Clavier -&gt; Soft Keyboard)</p>
+<p>• Presser Ctrl + Alt + T pour ouvrir le terminal</p>
+<p>• Entrer “sudo addgroup user sudo”</p>
+<p>• Se déconnecter puis se connecter en tant que user</p>
+<h3 id="comment-peux-ton-savoir-à-quels-groupes-appartient-lutilisateur-user">Comment peux-ton savoir à quels groupes appartient l’utilisateur user ?</h3>
+<p>Pour savoir quel utilisateur appartient à quel groupe, il faut regarder dans le fichier /etc/group.</p>
+<h2 id="installation-des-suppléments-invités">Installation des suppléments invités</h2>
+<p>• Insérer le cd des suppléments (Barre du haut de la machine virtuelle -&gt; Périphériques -&gt; insérer l’image CD des Additions invité…)</p>
+<p>• Entrer dans le terminal “sudo mount /dev/cdrom /mnt” pour monter le CD</p>
+<p>• Entrer dans le terminal “sudo /mnt/VBoxLinuxAdditions.run” pour installer les suppléments</p>
+<p>• Redémarrer la machine virtuelle puis se connecter avec le compte user</p>
+<blockquote>
+<p><img src="img/c/1.png" alt="ImageCapture" /> <img src="img/c/2.png" alt="ImageCapture" /> <img src="img/c/3.png" alt="ImageCapture" /> <img src="img/c/5.png" alt="ImageCapture" /> <img src="img/c/6.png" alt="ImageCapture" /> <img src="img/c/7.png" alt="ImageCapture" /></p>
+</blockquote>
+<h3 id="quel-est-la-version-du-noyau-linux-utilisé-par-votre-vm">Quel est la version du noyau Linux utilisé par votre VM ?</h3>
+<p>La version du noyau linux est 5.10.0-21-amd64</p>
+<h3 id="à-quoi-servent-les-suppléments-invités">À quoi servent les suppléments invités ?</h3>
+<p>• Intégration du pointeur de la souris : permet d’utiliser le même pointeur de souris sur l’hôte et l’invité. En l’activant, vous n’aurez plus qu’un seul pointeur de souris. Il ne sera plus nécessaire d’appuyer sur la touche Hôte pour libérer la souris du système d’exploitation invité.</p>
+<p>• Intégration transparente des fenêtres : les fenêtres qui sont affichées sur la machine virtuelle peuvent être mappées sur la machine hôte, comme si l’application sur l’invité était réellement en cours d’exécution sur l’hôte.</p>
+<p>• Synchronisation de l’heure entre l’hôte et l’invité.</p>
+<p>• Presse-papiers partagé : le presse-papiers du système d’exploitation invité peut être partagé avec le système d’exploitation hôte et inversement.</p>
+<p>• Connexions automatisées.</p>
+<p>https://lecrabeinfo.net/virtualbox-installer-les-additions-invite-guest-additions.html#:~:text=Les%20additions%20invit%C3%A9%20(guest%20additio ns,h%C3%B4te%20et%20la%20machine%20invit%C3%A9.</p>
+<h3 id="à-quoi-sert-la-commande-mount">À quoi sert la commande mount ?</h3>
+<p>La commande mount permet de demander au système d’exploitation de rendre un système de fichiers accessible, à un emplacement spécifié (le point de montage).</p>
+<h2 id="précision-sur-le-proxy">Précision sur le Proxy</h2>
+<p>• Pour configurer le proxy sur celui de l’IUT, trouver et ouvrir le fichier “./bashrc”, entrer “export http_proxy=http://cache.univ-lille.fr:3128” dans un premier temps, puis entrer “export https_proxy=$http_proxy” dans une seconde ligne.</p>
+<h1 id="installation-debian-par-pré-configuration">Installation Debian par pré-configuration</h1>
+<h4 id="pré-configuration">pré-configuration</h4>
+<p>Récupérer l’archive autoinstall.zip sur Moodle et décompresser-là dans le répertoire de votre machine virtuelle. • Remplacer la chaîne @<span class="citation" data-cites="UUID">@UUID</span>@@ par un identifiant unique universel. Le plus simple est d’exécuter la commande ci-dessous en étant placé dans le même répertoire que votre fichier S203-Debian11.viso.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>  <span class="fu">sed</span> -i -E <span class="st">&quot;s/(--iprt-iso-maker-file-marker-bourne-sh).*$/\1=</span><span class="va">$(</span><span class="ex">cat/proc/sys/kernel</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>  <span class="ex">/random/uuid</span><span class="va">)</span><span class="st">/&quot;</span> S203-Debian11.viso</span></code></pre></div>
+<p>• Insérer le fichier S203_Debian11.viso dans le lecteur optique (cd/dvd) de votre machine virtuelle ; • Démarrer la machine virtuelle et laissez l’installation se dérouler jusqu’au reboot.</p>
+<ol type="1">
+<li>Rajout de sudo à l’utilisateur standard :</li>
+</ol>
+<ul>
+<li>d-i passwd/user-default-groups string audio cdrom video sudo</li>
+</ul>
+<ol start="2" type="1">
+<li>Installation de l’envirronnement MATE :</li>
+</ol>
+<ul>
+<li>tasksel tasksel/first multiselect standard ssh-server mate-desktop</li>
+</ul>
+<ol start="3" type="1">
+<li>Ajout des paquets suivants :</li>
+</ol>
+<ul>
+<li>git : d-i pkgsel/include string openssh-server git-core</li>
+<li>sqlite3 : d-i pkgsel/include string openssh-server sqlite3</li>
+<li>curl : d-i pkgsel/include string openssh-server curl</li>
+<li>bash-completion : d-i pkgsel/include string openssh-server bash-completion</li>
+<li>neofetch : d-i pkgsel/include string openssh-server neofetch</li>
+</ul>
+<h2 id="à-propos-de-debian">À propos de Debian</h2>
+<h4 id="questions">Questions</h4>
+<ol type="1">
+<li><p>Qu’est-ce que le Projet Debian ? D’où vient le nom Debian ? Debian est une distribution spécifique de Linux. Il a été créer par des volontaires pour créer un système d’’exploitation compatible Unix avec des spécifications comme : être complet (plus de 59100 logiciels), être libre d’utilisation et de distribution (aucune adhésion ni paiement nécessaire pour contribuer à son développement) et dynamique (évolution rapide grâce à ses 1012 volontaires contribuant constamment à son développement). Le nom Debian vient de la combinaison entre Debra et Ian Murdock, les Fondateurs de ce projet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p>Chaque distribution majeur possède un nom de code différent. Par exemple, la version majeur actuelle (Debian 11) se nomme Bullseye. D’où viennent les noms de code données aux distributions ? Les noms de code n’ont pas de numéro de distribution, c’est pourquoi, le groupe Debian lui associe un nom de code pour faciliter les échanges qui proviennent du film Toy Story<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+</ol>
+<hr />
+<h1 id="gitea">Gitea</h1>
+<h3 id="configuration-globale-de-git">Configuration globale de git</h3>
+<ol type="1">
+<li>Qu’est-ce que le logiciel git-gui ? Comment se lance-t-il ? Git Gui est une interface graphique de commande. Il est possible de lancer l’interface en entrant dans le terminal “git gui”.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>Qu’est-ce que le logiciel gitk ? Comment se lance-t-il ?</li>
+</ol>
+<ul>
+<li>Gitk est un navigateur graphique pour visualiser l’historique des modifications dans un dépôt Git.Il peut se lancer avec la commande “gitk”.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ul>
+<ol start="3" type="1">
+<li>Quelle sera la ligne de commande git pour utiliser par défaut le proxy de l’université sur tous vos projets git ?</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>$ <span class="fu">git</span> config --global http.proxy <span class="va">$HHTP_PROXY</span></span></code></pre></div>
+<p>## Installation de Gitea</p>
+<ol type="1">
+<li><p>Qu’est que Gitea? Gitea est une forge logicielle libre en Go sous licence MIT, pour l’hébergement de développement logiciel. Gitea est similaire à Git avec des outils pour la relecture de code, suivi de bug ou encore un wiki. .</p></li>
+<li><p>À quels logiciels bien connus dans ce domaine peut-on le comparer?</p></li>
+</ol>
+<ul>
+<li>On peut le comparer grandement à Github ou encore GitLab.</li>
+</ul>
+<h1 id="on-télégcharge-le-fichier-binaire-de-la-version-souhaitée">On télégcharge le fichier binaire de la version souhaitée</h1>
+<p>$ wget -O gitea https://dl.gitea.com/gitea/1.18.5/gitea-1.18.5-linux-amd64</p>
+<h1 id="on-rend-exécuable-le-fichier">On rend exécuable le fichier</h1>
+<p>$ chmod +x gitea</p>
+<h1 id="on-télécharge-.asc-qui-servira-à-valider-le-fichier-binaire">On télécharge .asc qui servira à valider le fichier binaire</h1>
+<p>$ wget -O gitea https://dl.gitea.com/gitea/1.18.5/gitea-1.18.5-linux-amd64.asc</p>
+<h1 id="on-vérifie-la-signature-gpg-avec-les-fichier.asc-pour">On vérifie la signature GPG avec les fichier.asc pour:</h1>
+<p>$ gpg –keyserver keys.openpgp.org –recv 7C9E68152594688862D62AF62D9AE806EC1592E2" $ gpg –verify gitea-1.18.5-linux-amd64.asc gitea-1.18.5-linux-amd64</p>
+<h1 id="on-crée-un-utilisateur-pour-executer-gitea">On crée un utilisateur pour executer Gitea</h1>
+<blockquote>
+<figure>
+<img src="img/instruction.png" title="gitea" alt="" /><figcaption>instruction</figcaption>
+</figure>
+</blockquote>
+<h1 id="on-crée-un-dossier-avec-la-structure-nécessaaire-à-gitea-et-on-que-que-gitea-se-lance-à-chaque-démarrage-on-lance-donc-ces-commandes">On crée un dossier avec la structure nécessaaire à Gitea et on que que Gitea se lance à chaque démarrage on lance donc ces commandes:</h1>
+<blockquote>
+<figure>
+<img src="img/repertoire.png" title="repertoire" alt="" /><figcaption>repertoire</figcaption>
+</figure>
+</blockquote>
+<blockquote>
+<figure>
+<img src="img/session.png" title="session" alt="" /><figcaption>session</figcaption>
+</figure>
+</blockquote>
+<h1 id="conclusion">Conclusion</h1>
+<p>En conclusion; nous avons pu apprendre beaucoup de choses .Nous avons donc pu apprendre les objectifs de chaques serveur, la signification de 64 bits ainsi que la création automatique d’une machine virtuelle équipée de gitea. Nous avons aussi appris les différents balisages de markdown et l’utilisation de pandoc pour une compilation HTML et PDF.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>https://www.debian.org/doc/manuals/debian-faq/basic-defs.fr.html#pronunciation<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>https://www.debian.org/doc/manuals/project-history/releases.fr.html<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>http://codeur-pro.fr/git-gui-guide-complet/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>https://git-scm.com/docs/gitk<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
